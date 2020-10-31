@@ -43,11 +43,11 @@ namespace NUnitTestCabInvoiceGenerator
         {
             ///Arrange            
             this.invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
-            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1), new Ride(0.2, 1) };
+            Ride[] rides = { new Ride(2.0, 9), new Ride(0.1, 1), new Ride(0.2, 1) };
             ///Act
             InvoiceSummary expectedSummary = invoiceGenerator.CalculatingMultipleRides(rides);
             var expectedSummaryGetHash = expectedSummary.GetHashCode();
-            InvoiceSummary actualSummary = new InvoiceSummary(35.0, 3);
+            InvoiceSummary actualSummary = new InvoiceSummary(39.0,3,13);
             var actualSummaryGetHash = actualSummary.GetHashCode();
             ///Assert
             Assert.AreEqual(expectedSummary, actualSummary);

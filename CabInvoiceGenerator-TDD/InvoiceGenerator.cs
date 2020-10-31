@@ -6,6 +6,7 @@
 //---------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CabInvoiceGenerator_TDD
@@ -104,7 +105,8 @@ namespace CabInvoiceGenerator_TDD
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "ride should not be null");
                 }
             }
-            return new InvoiceSummary(totalFare, rides.Length);
+            double averageOfRides = totalFare / rides.Length;
+            return new InvoiceSummary(totalFare, rides.Length,averageOfRides);
         }
     }
 }
