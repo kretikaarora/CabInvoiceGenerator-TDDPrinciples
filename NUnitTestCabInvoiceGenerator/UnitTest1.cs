@@ -33,5 +33,22 @@ namespace NUnitTestCabInvoiceGenerator
             ///Assert
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Test]
+        public void GivenMultipleRide_ShouldReturnInvoiceSummary()
+        {
+            this.invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            Ride[] rides = {new Ride(2.0,5), new Ride(0.1,1),new Ride(0.2,1)};
+            InvoiceSummary expectedSummary = invoiceGenerator.CalculatingMultipleRides(rides);
+            //var expectedSummaryGetHash = expectedSummary.GetHashCode();
+            InvoiceSummary actualSummary = new InvoiceSummary(35.0,3);
+            Assert.AreEqual(expectedSummary, actualSummary);
+            //var actualSummaryGetHash = actualSummary.GetHashCode();
+            //Assert.AreEqual(expectedSummary, actualSummary);
+            //Assert.AreEqual(actualSummaryGetHash, expectedSummaryGetHash);
+        }
     }
 }
