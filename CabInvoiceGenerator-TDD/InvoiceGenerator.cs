@@ -78,10 +78,17 @@ namespace CabInvoiceGenerator_TDD
                 }
             }
             return Math.Max(totalFare, this.MINIMUM_FARE);
-        }  
-        
-        public  InvoiceSummary CalculatingMultipleRides(Ride [] rides)
+        }
+
+        /// <summary>
+        /// Calculating Multiple Rides
+        /// </summary>
+        /// <param name="rides"></param>
+        /// <returns></returns>
+        public InvoiceSummary CalculatingMultipleRides(Ride[] rides)
         {
+            ///caclulating by taking input of an array of Ride type
+            ///calling the Calculate Fare to get fare then adding in total fare 
             double totalFare = 0;
             try
             {
@@ -97,10 +104,8 @@ namespace CabInvoiceGenerator_TDD
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "ride should not be null");
                 }
             }
-            return  new InvoiceSummary(totalFare, rides.Length);
-
+            return new InvoiceSummary(totalFare, rides.Length);
         }
-
-     }
     }
+}
 

@@ -35,20 +35,30 @@ namespace NUnitTestCabInvoiceGenerator
         }
 
         /// <summary>
-        /// 
+        /// Given Multiple Rides Should Return Invoice Summary
+        /// TC 2.2
         /// </summary>
         [Test]
         public void GivenMultipleRide_ShouldReturnInvoiceSummary()
         {
+            ///Arrange            
             this.invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
-            Ride[] rides = {new Ride(2.0,5), new Ride(0.1,1),new Ride(0.2,1)};
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1), new Ride(0.2, 1) };
+            ///Act
             InvoiceSummary expectedSummary = invoiceGenerator.CalculatingMultipleRides(rides);
-            //var expectedSummaryGetHash = expectedSummary.GetHashCode();
-            InvoiceSummary actualSummary = new InvoiceSummary(35.0,3);
+            var expectedSummaryGetHash = expectedSummary.GetHashCode();
+            InvoiceSummary actualSummary = new InvoiceSummary(35.0, 3);
+            var actualSummaryGetHash = actualSummary.GetHashCode();
+            ///Assert
             Assert.AreEqual(expectedSummary, actualSummary);
-            //var actualSummaryGetHash = actualSummary.GetHashCode();
+            Assert.AreEqual(actualSummaryGetHash, expectedSummaryGetHash);
+
             //Assert.AreEqual(expectedSummary, actualSummary);
-            //Assert.AreEqual(actualSummaryGetHash, expectedSummaryGetHash);
+            ///Assert can be done using AreEqual method or By using getting the hashcode and then comparing the hashcode
+            ///method overide for Equal and GetHashCode is in InvoiceSummaryClass
+
         }
+
+
     }
 }
