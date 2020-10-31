@@ -14,11 +14,13 @@ namespace CabInvoiceGenerator_TDD
     {
         public double totalFare;
         public int length;
+        public double averageFairPerRide;
 
-        public InvoiceSummary (double totalFare, int length)
+        public InvoiceSummary (double totalFare, int length,double averageFairPerRide)
         {
             this.totalFare = totalFare;
-            this.length = length;         
+            this.length = length;
+            this.averageFairPerRide = averageFairPerRide;
         }
         public override bool Equals(object obj)
         {
@@ -31,12 +33,12 @@ namespace CabInvoiceGenerator_TDD
                 return false;
             }
             InvoiceSummary inputObject = (InvoiceSummary)obj;
-            return this.totalFare == inputObject.totalFare && this.length == inputObject.length;
+            return this.totalFare == inputObject.totalFare && this.length == inputObject.length && this.averageFairPerRide==inputObject.averageFairPerRide;
         }
      
         public override int GetHashCode()
         {
-            return this.totalFare.GetHashCode() ^ this.length.GetHashCode();
+            return this.totalFare.GetHashCode() ^ this.length.GetHashCode()^this.averageFairPerRide.GetHashCode();
         }
     }
 }
