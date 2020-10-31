@@ -11,7 +11,7 @@ namespace CabInvoiceGenerator_TDD
     /// <summary>
     /// Ride Class
     /// </summary>
-    class Ride
+     public class Ride
     {
         /// <summary>
         /// variables for Ride class 
