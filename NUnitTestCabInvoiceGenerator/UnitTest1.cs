@@ -21,7 +21,7 @@ namespace NUnitTestCabInvoiceGenerator
         /// TC 1.1
         /// </summary>
         [Test]
-        public void GivenDistanceAndTime_ShouldReturnTotalFare()
+        public void GivenDistanceAndTime_ShouldReturnTotalFareFOrNormalRide()
         {
             ///Arrange
             double distance = 10;
@@ -81,6 +81,24 @@ namespace NUnitTestCabInvoiceGenerator
             InvoiceSummary actualSummary = invoiceGenerator.GetInvoiceSummary(userIdForFirstCustomer);
             InvoiceSummary expectedSummary = new InvoiceSummary(30,2,15);
             Assert.AreEqual(actualSummary, expectedSummary);
+        }
+
+        /// <summary>
+        /// Given Distance And Time Should Return TotalFare For PremiumRide
+        /// TC 5.1
+        /// </summary>
+        [Test]
+        public void GivenDistanceAndTime_ShouldReturnTotalFareForPremiumRide()
+        {
+            ///Arrange
+            double distance = 10;
+            int time = 10;
+            double expected = 170;
+            ///Act
+            this.invoiceGenerator = new InvoiceGenerator(RideType.PREMIUM);
+            double actual = invoiceGenerator.CalculateFare(distance, time);
+            ///Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
