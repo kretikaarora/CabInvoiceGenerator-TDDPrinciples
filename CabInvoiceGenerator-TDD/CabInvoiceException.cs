@@ -21,7 +21,7 @@ namespace CabInvoiceGenerator_TDD
         /// </summary>
         public enum ExceptionType
         {
-          INVALID_RIDE_TYPE, INVALID_DISTANCE, INVALID_TIME, NULL_RIDES
+          INVALID_RIDE_TYPE, INVALID_DISTANCE, INVALID_TIME, NULL_RIDES,INVALID_USER
         }
 
         /// <summary>
