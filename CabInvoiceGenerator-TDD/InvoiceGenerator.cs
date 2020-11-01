@@ -20,6 +20,7 @@ namespace CabInvoiceGenerator_TDD
         public readonly double MINIMUM_COST_PER_KM;
         public readonly int COST_PER_MIN;
         public readonly double MINIMUM_FARE;
+        public RideRepository rideRepository;
 
         /// <summary>
         /// default constructor
@@ -33,6 +34,7 @@ namespace CabInvoiceGenerator_TDD
         public InvoiceGenerator(RideType rideType)
         {
             this.rideType = rideType;
+            rideRepository = new RideRepository();
             try
             {
                 if (this.rideType.Equals(RideType.NORMAL))
@@ -107,6 +109,49 @@ namespace CabInvoiceGenerator_TDD
             }
             double averageOfRides = totalFare / rides.Length;
             return new InvoiceSummary(totalFare, rides.Length,averageOfRides);
+        }
+
+        /// <summary>
+        /// Adding rides
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="rides"></param>
+        public void AddRide(string userId , Ride[] rides)
+        {    
+            ///calling the add function of ride repository for adding rides into dictionary
+            try
+            {
+                rideRepository.AddRides(userId, rides);
+            }
+            catch(CabInvoiceException)
+            {
+                if (rides == null)
+                {
+                    throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "no rides are taken");
+                }
+                   
+            }
+            
+        }
+
+        /// <summary>
+        /// Getting Invoice Summary
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public InvoiceSummary GetInvoiceSummary(string userId)
+        {
+            ///calling multiple rides func in this class find total fare 
+            ///we are passing the getuserride(userid) to get array of rides 
+            ///multiple rides is having input as array so this is the reason we were type casting list into array while returning
+            try
+            {
+                return this.CalculatingMultipleRides(rideRepository.GetUserRides(userId));
+            }
+            catch
+            {
+                throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER, "Invalid user id");
+            }
         }
     }
 }
